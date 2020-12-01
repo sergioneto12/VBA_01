@@ -1,0 +1,26 @@
+Sub Insere_Especifico_3()
+        
+    Range("P82:AB89").Select 'Local de ação da Imagem
+    Dim Pict
+    Dim Imagem As Object
+    Dim ImgFileFormat As String
+    Dim Celula As String
+
+    Celula = "P82:AB89"
+
+    ImgFileFormat = "Image Files JPG (*.jpg),*.jpg, Image Files GIF (*.gif),*.gif, Image Files BMP (*.bmp),*.bmp" 'tipos de arquivos suportados
+    
+    Pict = Application.GetOpenFilename(ImgFileFormat) 'comando para abrir a pasta de procura das imagens
+    If Pict = False Then End 'indica que se encontrar uma imagem, a janela deve fechar
+
+    Set Imagem = ActiveSheet.Pictures.Insert(Pict) 'ativa o mesmo comando o qual seria aberto na caixa de pesquisa
+
+    Imagem.Top = Range(Celula).Top 'ajuste
+    Imagem.Left = Range(Celula).Left 'ajuste
+    Imagem.ShapeRange.LockAspectRatio = msoFalse 'confirmação do ajuste
+
+    Imagem.Height = Range(Celula).Height * 1 '1 = Quantidade de linhas...
+    Imagem.Width = Range(Celula).Width * 1 '1 = Quantidade de colunas...
+    
+    'como as células estão mescladas, formando uma célula maior, deve-se manter height e weight e 1
+End Sub
