@@ -1,0 +1,12 @@
+Sub Cadastro_Painel()
+
+    Range("AL41:BM41").Select
+    Selection.Copy
+    Range("A1048576").End(xlUp).Offset(1, 0).Select
+    ActiveSheet.Paste
+    
+End Sub
+
+'No range, seleciona toda a célula, inclusive a formatação e bordas
+'No segundo método range, é selecionada a última célula da planilha, e depois volta até a primeira linha não preenchida
+'Para o seu caso, avalie bem se será útil fazer desta forma
