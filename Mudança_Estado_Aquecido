@@ -1,0 +1,28 @@
+Private Sub Worksheet_Change(ByVal Target As Range)
+    Dim KeyCells As Range
+    
+    'A variável KeyCells contém as células que vão causar um alerta quando forem mudadas
+    
+    If Not Intersect(Target, Range("Y45:AB100")) _
+    
+    'Note que o range aqui varia para o seu uso
+    
+        Is Nothing Then
+        
+        'If not evita que fora desta range seja feita alguma ação
+        
+        If Intersect(Target, Range("Y45:AB100")) = "Aquecido" Then
+            Range("CC1:DD36").Select
+            Selection.Copy
+            Range("A1048576").End(xlUp).Offset(2, 0).Select
+            ActiveSheet.Paste
+            
+            'Este if intercepta como alvo a range do relatório
+            'de aquecimento, seleciona, e antes do paste,
+            'ele seleciona a segunda célula livre após a primeira
+            'digitada após a tabela
+            
+        End If
+        
+    End If
+End Sub
